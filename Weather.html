@@ -9,28 +9,42 @@ fieldset
 <body>
 <script src="https://code.angularjs.org/1.6.9/angular.js"></script>
   <script type="text/java script" language="java script">
-   $("button").click(function(){
-    const xhttpr = new XMLHttpRequest();
-xhttpr.open('GET', '0c0d6f5a21d4eb9d7fdcd13ae9e23f89', true);
+   <script>
+        async function getWeather() {
+            const apiKey = '0c0d6f5a21d4eb9d7fdcd13ae9e23f89'; 
+            const city = document.getElementById('city').value;
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+            
+             document.getElementById('loading').style.display = 'block'; // Show loading
+             document.getElementById('weatherResult').innerHTML = ''; // Clear previous results
+          
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
 
-xhttpr.send();
+                if (data.cod === "404") {
+                    document.getElementById('weatherResult').innerHTML = `<p>City not found. Please try again.</p>`;
+                } else {
+                    document.getElementById('weatherResult').innerHTML = `
+                        <h2>${data.name}</h2>
+                        <p>Temperature: ${data.main.temp}°C</p>
+                        <p>Weather: ${data.weather[0].description}</p>
+                        <p>Humidity: ${data.main.humidity}%</p>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('weatherResult').innerHTML = `<p>Error fetching data.</p>`;
+            }
+        }
+  </script>
 
-xhttpr.onload = ()=> {
-  if (xhttpr.status === 200) {
-      const response = JSON.parse(xhttpr.response);
-      // Process the response data here
-  } 
-};
-    
     
 <fieldset><center>
 <h1>Weather app</h1> 
-<div ng-app="">
-  {{city}} 
 </center>
 </fieldset>
 <fieldset>
-<input type=text ng-model=city></input>
+<input type=text name=city ></input>
 <input type=button value=get_weather></input>
 </fieldset>
 </div>
