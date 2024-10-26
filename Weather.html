@@ -7,6 +7,8 @@
             allign-items:center;
         }
         .container{
+           border-color:black;
+            border:15px;
             background-color: white;
       padding: 30 px;
       width: 100%;
@@ -28,7 +30,7 @@
           
             document.getElementById('weatherResult').innerHTML = ''; // Clear previous results
 
-            try {
+        
                 const response = await fetch(url);
                 const data = await response.json();
 
@@ -41,10 +43,10 @@
                         <p>Weather: ${data.weather[0].description}</p>
                         <p>Humidity: ${data.main.humidity}%</p>`;
                 }
-            } catch (error) {
-                document.getElementById('weatherResult').innerHTML = '<p>Error fetching data. Please try again later.</p>';
+            
+            
             }
-        }
+        
     </script>
 
     <fieldset>
