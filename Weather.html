@@ -1,50 +1,56 @@
-<html> <head>
-<style type="text/css">
-body
-{ background-color:powder blue; }
-fieldset
-{ background-color:white; }
-</style>
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        body {
+            background-color: powderblue;
+        }
+        fieldset {
+            background-color: white;
+        }
+    </style>
 </head>
 <body>
-<script src="https://code.angularjs.org/1.6.9/angular.js"></script>
-  <script type="text/java script" language="java script">
-   <script>
+    <script src="https://code.angularjs.org/1.6.9/angular.js"></script>
+    <script type="text/javascript">
         async function getWeather() {
             const apiKey = '0c0d6f5a21d4eb9d7fdcd13ae9e23f89'; 
             const city = document.getElementById('city').value;
-            const url = 'https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric';
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
           
-             document.getElementById('weatherResult').innerHTML = ''; // Clear previous results
-          
-    
+            document.getElementById('weatherResult').innerHTML = ''; // Clear previous results
+
+            try {
                 const response = await fetch(url);
                 const data = await response.json();
 
                 if (data.cod === "404") {
                     document.getElementById('weatherResult').innerHTML = '<p>City not found. Please try again.</p>';
                 } else {
-                    document.getElementById('weatherResult').innerHTML = '
+                    document.getElementById('weatherResult').innerHTML = `
                         <h2>${data.name}</h2>
                         <p>Temperature: ${data.main.temp}°C</p>
                         <p>Weather: ${data.weather[0].description}</p>
-                        <p>Humidity: ${data.main.humidity}%</p> ';
+                        <p>Humidity: ${data.main.humidity}%</p>`;
                 }
-            
+            } catch (error) {
+                document.getElementById('weatherResult').innerHTML = '<p>Error fetching data. Please try again later.</p>';
+            }
         }
-  </script>
+    </script>
 
-    
-<fieldset><center>
-<h1>Weather app</h1> 
-</center>
-</fieldset>
-<fieldset>
-  <div>
-<input type=text name=city ></input>
-<button onclick=getWeather()>Get Weather</button>
-<div id='loading' style={display:none;}>loading</div>
-  </div></fieldset>
-
+    <fieldset>
+        <center>
+            <h1>Weather App</h1> 
+        </center>
+    </fieldset>
+    <fieldset>
+        <div>
+            <input type="text" id="city" name="city" placeholder="Enter city name" />
+            <button onclick="getWeather()">Get Weather</button>
+            <div id="loading" style="display:none;">loading</div>
+            <div id="weatherResult"></div>
+        </div>
+    </fieldset>
 </body>
 </html>
