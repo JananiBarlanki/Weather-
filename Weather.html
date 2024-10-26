@@ -1,17 +1,26 @@
 <html> <head>
 <style type="text/css">
 body
-{ background-color: black; }
+{ background-color:powder blue; }
+fieldset
+{ background-color:white; }
 </style>
 </head>
 <body>
+<script src="https://code.angularjs.org/1.6.9/angular.js"></script>
+  <script type="text/java script" language="java script">
+   $("button").click(function(){
+    
 <fieldset><center>
-<h1>Weather app</h1>
+<h1>Weather app</h1> 
+<div ng-app="">
+  {{city}} 
 </center>
 </fieldset>
 <fieldset>
-<input type=text name=city></input>
+<input type=text ng-model=city></input>
 <input type=button value=get_weather></input>
 </fieldset>
+</div>
 </body>
 </html>
