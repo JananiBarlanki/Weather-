@@ -10,7 +10,7 @@
         }
     </style>
 </head>
-<body>
+<body><center>
     <script src="https://code.angularjs.org/1.6.9/angular.js"></script>
     <script type="text/javascript">
         async function getWeather() {
@@ -40,17 +40,18 @@
     </script>
 
     <fieldset>
-        <center>
+    <center>
             <h1>Weather App</h1> 
-        </center>
+    </center>
     </fieldset>
     <fieldset>
-        <div>
-            <input type="text" id="city" name="city" placeholder="Enter city name" />
-            <button onclick="getWeather()">Get Weather</button>
+        <div><center>
             <div id="loading" style="display:none;">loading</div>
             <div id="weatherResult"></div>
+            <input style={size:30 px;}type="text" id="city" name="city" placeholder="Enter city name" />
+            <button onclick="getWeather()">Get Weather</button>
+            </center>
         </div>
-    </fieldset>
+    </fieldset></center>
 </body>
 </html>
