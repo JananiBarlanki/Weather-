@@ -5,11 +5,13 @@
             background-color: powderblue;
             allign-items:center;
             display: flex;
-      justify-content: center;
+           justify-content: center;
+        }
+        div{
+            background-color: white;
         }
         .container{
-            border:70px solid black;
-            background-color: white;
+      border:70px solid black;
       padding: 200px;
       width: 70%;
       text-align: center;
@@ -34,24 +36,21 @@
 
                 if (data.cod === "404") {
                     document.getElementById('weatherResult').innerHTML = '<p>City not found. Please try again.</p>';
-                } else {
+                } 
+                else {
                     document.getElementById('weatherResult').innerHTML = `
                         <h2>${data.name}</h2>
                         <p>Temperature: ${data.main.temp}°C</p>
                         <p>Weather: ${data.weather[0].description}</p>
                         <p>Humidity: ${data.main.humidity}%</p>`;
                 }
-            
-            
-            }
-        
-    </script>
-
-    <fieldset>
+        }
+        </script>
+   <div>
     <center>
             <h1>Weather App</h1> 
     </center>
-    </fieldset>
+    </div>
     
         <div class=container><center>
             <div id="loading" style="display:none;">loading</div>
